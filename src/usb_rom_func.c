@@ -30,6 +30,7 @@
 #include "i2c.h"
 #include "i2clcd.h"
 #include "type.h"
+#include "xprintf.h"
 
 #define UART_BRIDGE 1
 
@@ -349,6 +350,9 @@ void VCOM_UART_Send(VCOM_DATA_T* pVcom)
 {
 	// when data received on USB, send it to UART
 	uart_write(pVcom);
+//	i2c_lcd_clear();
+//	i2c_lcd_set_cmd(0x80);	    // set address to 1st line
+//	xprintf("%s", pVcom->txBuf);
 	LOW(1, 19);
 }
 

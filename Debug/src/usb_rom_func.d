@@ -24,7 +24,8 @@ src/usb_rom_func.o src/usb_rom_func.d: ../src/usb_rom_func.c \
  C:\Users\Hidemichi_Gotou\Documents\LPCXpresso_8.2.2_650\workspace\LPC11U37_Controller\inc/cappuccino.h \
  C:\Users\Hidemichi_Gotou\Documents\LPCXpresso_8.2.2_650\workspace\LPC11U37_Controller\Driver_Lib\inc/i2c.h \
  C:\Users\Hidemichi_Gotou\Documents\LPCXpresso_8.2.2_650\workspace\LPC11U37_Controller\inc/i2clcd.h \
- C:\Users\Hidemichi_Gotou\Documents\LPCXpresso_8.2.2_650\workspace\LPC11U37_Controller\Driver_Lib\inc/type.h
+ C:\Users\Hidemichi_Gotou\Documents\LPCXpresso_8.2.2_650\workspace\LPC11U37_Controller\Driver_Lib\inc/type.h \
+ C:\Users\Hidemichi_Gotou\Documents\LPCXpresso_8.2.2_650\workspace\LPC11U37_Controller\inc/xprintf.h
 
 C:\Users\Hidemichi_Gotou\Documents\LPCXpresso_8.2.2_650\workspace\CMSIS_CORE_LPC11Uxx\inc/LPC11Uxx.h:
 
@@ -77,3 +78,5 @@ C:\Users\Hidemichi_Gotou\Documents\LPCXpresso_8.2.2_650\workspace\LPC11U37_Contr
 C:\Users\Hidemichi_Gotou\Documents\LPCXpresso_8.2.2_650\workspace\LPC11U37_Controller\inc/i2clcd.h:
 
 C:\Users\Hidemichi_Gotou\Documents\LPCXpresso_8.2.2_650\workspace\LPC11U37_Controller\Driver_Lib\inc/type.h:
+
+C:\Users\Hidemichi_Gotou\Documents\LPCXpresso_8.2.2_650\workspace\LPC11U37_Controller\inc/xprintf.h:

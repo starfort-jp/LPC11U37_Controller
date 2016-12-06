@@ -142,6 +142,7 @@ Discarded input sections
  .group         0x00000000        0x8 ./src/usb_rom_func.o
  .group         0x00000000        0x8 ./src/usb_rom_func.o
  .group         0x00000000        0x8 ./src/usb_rom_func.o
+ .group         0x00000000        0x8 ./src/usb_rom_func.o
  .text          0x00000000        0x0 ./src/usb_rom_func.o
  .data          0x00000000        0x0 ./src/usb_rom_func.o
  .bss           0x00000000        0x0 ./src/usb_rom_func.o
@@ -167,6 +168,7 @@ Discarded input sections
  .debug_macro   0x00000000       0x28 ./src/usb_rom_func.o
  .debug_macro   0x00000000       0xbe ./src/usb_rom_func.o
  .debug_macro   0x00000000       0x22 ./src/usb_rom_func.o
+ .debug_macro   0x00000000       0x40 ./src/usb_rom_func.o
  .group         0x00000000        0x8 ./src/xprintf.o
  .group         0x00000000        0x8 ./src/xprintf.o
  .group         0x00000000        0x8 ./src/xprintf.o
@@ -649,7 +651,7 @@ END GROUP
                 0x20000800                __top_SRAM1_2 = 0x20000800
                 0x20000800                __top_RAM3 = 0x20000800
 
-.text           0x00000000     0x281c
+.text           0x00000000     0x284c
  FILL mask 0xff
                 0x00000000                __vectors_start__ = ABSOLUTE (.)
  *(.isr_vector)
@@ -658,13 +660,13 @@ END GROUP
                 0x000000c0                . = ALIGN (0x4)
                 0x000000c0                __section_table_start = .
                 0x000000c0                __data_section_table = .
-                0x000000c0        0x4 LONG 0x281c LOADADDR (.data)
+                0x000000c0        0x4 LONG 0x284c LOADADDR (.data)
                 0x000000c4        0x4 LONG 0x10000000 ADDR (.data)
                 0x000000c8        0x4 LONG 0x8 SIZEOF (.data)
-                0x000000cc        0x4 LONG 0x281c LOADADDR (.data_RAM2)
+                0x000000cc        0x4 LONG 0x284c LOADADDR (.data_RAM2)
                 0x000000d0        0x4 LONG 0x20004000 ADDR (.data_RAM2)
                 0x000000d4        0x4 LONG 0x0 SIZEOF (.data_RAM2)
-                0x000000d8        0x4 LONG 0x281c LOADADDR (.data_RAM3)
+                0x000000d8        0x4 LONG 0x284c LOADADDR (.data_RAM3)
                 0x000000dc        0x4 LONG 0x20000000 ADDR (.data_RAM3)
                 0x000000e0        0x4 LONG 0x0 SIZEOF (.data_RAM3)
                 0x000000e4                __data_section_table_end = .
@@ -734,217 +736,217 @@ END GROUP
                 0x000005f8       0x48 ./src/main.o
  .text.init     0x00000640       0x88 ./src/main.o
                 0x00000640                init
- .text.loop     0x000006c8       0xc0 ./src/main.o
+ .text.loop     0x000006c8       0xf0 ./src/main.o
                 0x000006c8                loop
- .text.main     0x00000788       0xf0 ./src/main.o
-                0x00000788                main
+ .text.main     0x000007b8       0xf0 ./src/main.o
+                0x000007b8                main
  .text.SysTick_Handler
-                0x00000878       0x18 ./src/systick.o
-                0x00000878                SysTick_Handler
+                0x000008a8       0x18 ./src/systick.o
+                0x000008a8                SysTick_Handler
  .text.Systick_Gettime
-                0x00000890       0x14 ./src/systick.o
-                0x00000890                Systick_Gettime
+                0x000008c0       0x14 ./src/systick.o
+                0x000008c0                Systick_Gettime
  .text.Systick_Start
-                0x000008a4       0x2c ./src/systick.o
-                0x000008a4                Systick_Start
+                0x000008d4       0x2c ./src/systick.o
+                0x000008d4                Systick_Start
  .text.Systick_Stop
-                0x000008d0       0x20 ./src/systick.o
-                0x000008d0                Systick_Stop
+                0x00000900       0x20 ./src/systick.o
+                0x00000900                Systick_Stop
  .text.delaySysTick
-                0x000008f0       0x54 ./src/systick.o
-                0x000008f0                delaySysTick
- .text.wait_ms  0x00000944       0x18 ./src/systick.o
-                0x00000944                wait_ms
+                0x00000920       0x54 ./src/systick.o
+                0x00000920                delaySysTick
+ .text.wait_ms  0x00000974       0x18 ./src/systick.o
+                0x00000974                wait_ms
  .text.NVIC_EnableIRQ
-                0x0000095c       0x2c ./src/usb_rom_func.o
+                0x0000098c       0x2c ./src/usb_rom_func.o
  .text.uart_write
-                0x00000988       0xc4 ./src/usb_rom_func.o
+                0x000009b8       0xc4 ./src/usb_rom_func.o
  .text.uart_read
-                0x00000a4c       0x64 ./src/usb_rom_func.o
+                0x00000a7c       0x64 ./src/usb_rom_func.o
  .text.UART_Bridge_Init
-                0x00000ab0      0x1b0 ./src/usb_rom_func.o
-                0x00000ab0                UART_Bridge_Init
+                0x00000ae0      0x1b0 ./src/usb_rom_func.o
+                0x00000ae0                UART_Bridge_Init
  .text.USB_Pin_Clk_Init
-                0x00000c60       0x50 ./src/usb_rom_func.o
-                0x00000c60                USB_Pin_Clk_Init
+                0x00000c90       0x50 ./src/usb_rom_func.o
+                0x00000c90                USB_Pin_Clk_Init
  .text.USB_CDC_Init
-                0x00000cb0      0x238 ./src/usb_rom_func.o
-                0x00000cb0                USB_CDC_Init
+                0x00000ce0      0x238 ./src/usb_rom_func.o
+                0x00000ce0                USB_CDC_Init
  .text.USB_IRQHandler
-                0x00000ee8       0x5c ./src/usb_rom_func.o
-                0x00000ee8                USB_IRQHandler
+                0x00000f18       0x5c ./src/usb_rom_func.o
+                0x00000f18                USB_IRQHandler
  .text.UART_IRQHandler
-                0x00000f44      0x11c ./src/usb_rom_func.o
-                0x00000f44                UART_IRQHandler
+                0x00000f74      0x11c ./src/usb_rom_func.o
+                0x00000f74                UART_IRQHandler
  .text.VCOM_USB_Send
-                0x00001060       0x40 ./src/usb_rom_func.o
-                0x00001060                VCOM_USB_Send
+                0x00001090       0x40 ./src/usb_rom_func.o
+                0x00001090                VCOM_USB_Send
  .text.VCOM_UART_Send
-                0x000010a0       0x28 ./src/usb_rom_func.o
-                0x000010a0                VCOM_UART_Send
+                0x000010d0       0x28 ./src/usb_rom_func.o
+                0x000010d0                VCOM_UART_Send
  .text.VCOM_SetLineCode
-                0x000010c8       0x30 ./src/usb_rom_func.o
-                0x000010c8                VCOM_SetLineCode
+                0x000010f8       0x30 ./src/usb_rom_func.o
+                0x000010f8                VCOM_SetLineCode
  .text.VCOM_SOF_Event
-                0x000010f8       0x9c ./src/usb_rom_func.o
-                0x000010f8                VCOM_SOF_Event
+                0x00001128       0x9c ./src/usb_rom_func.o
+                0x00001128                VCOM_SOF_Event
  .text.VCOM_SendBreak
-                0x00001194       0x6c ./src/usb_rom_func.o
-                0x00001194                VCOM_SendBreak
+                0x000011c4       0x6c ./src/usb_rom_func.o
+                0x000011c4                VCOM_SendBreak
  .text.VCOM_Bulk_In_Hdlr
-                0x00001200       0x18 ./src/usb_rom_func.o
-                0x00001200                VCOM_Bulk_In_Hdlr
+                0x00001230       0x18 ./src/usb_rom_func.o
+                0x00001230                VCOM_Bulk_In_Hdlr
  .text.VCOM_Bulk_Out_Hdlr
-                0x00001218       0x60 ./src/usb_rom_func.o
-                0x00001218                VCOM_Bulk_Out_Hdlr
- .text.xputc    0x00001278       0x58 ./src/xprintf.o
-                0x00001278                xputc
- .text.xputs    0x000012d0       0x28 ./src/xprintf.o
-                0x000012d0                xputs
+                0x00001248       0x60 ./src/usb_rom_func.o
+                0x00001248                VCOM_Bulk_Out_Hdlr
+ .text.xputc    0x000012a8       0x58 ./src/xprintf.o
+                0x000012a8                xputc
+ .text.xputs    0x00001300       0x28 ./src/xprintf.o
+                0x00001300                xputs
  .text.xvprintf
-                0x000012f8      0x31c ./src/xprintf.o
- .text.xprintf  0x00001614       0x28 ./src/xprintf.o
-                0x00001614                xprintf
+                0x00001328      0x31c ./src/xprintf.o
+ .text.xprintf  0x00001644       0x28 ./src/xprintf.o
+                0x00001644                xprintf
  .text.FLEX_INT0_IRQHandler
-                0x0000163c       0x98 ./Driver_Lib/src/gpio.o
-                0x0000163c                FLEX_INT0_IRQHandler
+                0x0000166c       0x98 ./Driver_Lib/src/gpio.o
+                0x0000166c                FLEX_INT0_IRQHandler
  .text.FLEX_INT1_IRQHandler
-                0x000016d4       0x98 ./Driver_Lib/src/gpio.o
-                0x000016d4                FLEX_INT1_IRQHandler
+                0x00001704       0x98 ./Driver_Lib/src/gpio.o
+                0x00001704                FLEX_INT1_IRQHandler
  .text.FLEX_INT2_IRQHandler
-                0x0000176c       0x98 ./Driver_Lib/src/gpio.o
-                0x0000176c                FLEX_INT2_IRQHandler
+                0x0000179c       0x98 ./Driver_Lib/src/gpio.o
+                0x0000179c                FLEX_INT2_IRQHandler
  .text.FLEX_INT3_IRQHandler
-                0x00001804       0x98 ./Driver_Lib/src/gpio.o
-                0x00001804                FLEX_INT3_IRQHandler
+                0x00001834       0x98 ./Driver_Lib/src/gpio.o
+                0x00001834                FLEX_INT3_IRQHandler
  .text.FLEX_INT4_IRQHandler
-                0x0000189c       0x98 ./Driver_Lib/src/gpio.o
-                0x0000189c                FLEX_INT4_IRQHandler
+                0x000018cc       0x98 ./Driver_Lib/src/gpio.o
+                0x000018cc                FLEX_INT4_IRQHandler
  .text.FLEX_INT5_IRQHandler
-                0x00001934       0x98 ./Driver_Lib/src/gpio.o
-                0x00001934                FLEX_INT5_IRQHandler
+                0x00001964       0x98 ./Driver_Lib/src/gpio.o
+                0x00001964                FLEX_INT5_IRQHandler
  .text.FLEX_INT6_IRQHandler
-                0x000019cc       0x98 ./Driver_Lib/src/gpio.o
-                0x000019cc                FLEX_INT6_IRQHandler
+                0x000019fc       0x98 ./Driver_Lib/src/gpio.o
+                0x000019fc                FLEX_INT6_IRQHandler
  .text.FLEX_INT7_IRQHandler
-                0x00001a64       0x98 ./Driver_Lib/src/gpio.o
-                0x00001a64                FLEX_INT7_IRQHandler
+                0x00001a94       0x98 ./Driver_Lib/src/gpio.o
+                0x00001a94                FLEX_INT7_IRQHandler
  .text.GINT0_IRQHandler
-                0x00001afc       0x5c ./Driver_Lib/src/gpio.o
-                0x00001afc                GINT0_IRQHandler
+                0x00001b2c       0x5c ./Driver_Lib/src/gpio.o
+                0x00001b2c                GINT0_IRQHandler
  .text.GINT1_IRQHandler
-                0x00001b58       0x5c ./Driver_Lib/src/gpio.o
-                0x00001b58                GINT1_IRQHandler
+                0x00001b88       0x5c ./Driver_Lib/src/gpio.o
+                0x00001b88                GINT1_IRQHandler
  .text.GPIOInit
-                0x00001bb4       0x30 ./Driver_Lib/src/gpio.o
-                0x00001bb4                GPIOInit
+                0x00001be4       0x30 ./Driver_Lib/src/gpio.o
+                0x00001be4                GPIOInit
  .text.GPIOGetPinValue
-                0x00001be4       0x5c ./Driver_Lib/src/gpio.o
-                0x00001be4                GPIOGetPinValue
+                0x00001c14       0x5c ./Driver_Lib/src/gpio.o
+                0x00001c14                GPIOGetPinValue
  .text.NVIC_EnableIRQ
-                0x00001c40       0x2c ./Driver_Lib/src/i2c.o
+                0x00001c70       0x2c ./Driver_Lib/src/i2c.o
  .text.I2C_IRQHandler
-                0x00001c6c      0x1e0 ./Driver_Lib/src/i2c.o
-                0x00001c6c                I2C_IRQHandler
+                0x00001c9c      0x1e0 ./Driver_Lib/src/i2c.o
+                0x00001c9c                I2C_IRQHandler
  .text.I2CStart
-                0x00001e4c       0x4c ./Driver_Lib/src/i2c.o
-                0x00001e4c                I2CStart
- .text.I2CStop  0x00001e98       0x2c ./Driver_Lib/src/i2c.o
-                0x00001e98                I2CStop
- .text.I2CInit  0x00001ec4       0xbc ./Driver_Lib/src/i2c.o
-                0x00001ec4                I2CInit
+                0x00001e7c       0x4c ./Driver_Lib/src/i2c.o
+                0x00001e7c                I2CStart
+ .text.I2CStop  0x00001ec8       0x2c ./Driver_Lib/src/i2c.o
+                0x00001ec8                I2CStop
+ .text.I2CInit  0x00001ef4       0xbc ./Driver_Lib/src/i2c.o
+                0x00001ef4                I2CInit
  .text.I2CEngine
-                0x00001f80       0x5c ./Driver_Lib/src/i2c.o
-                0x00001f80                I2CEngine
+                0x00001fb0       0x5c ./Driver_Lib/src/i2c.o
+                0x00001fb0                I2CEngine
  .text.i2c_write
-                0x00001fdc       0x5c ./Driver_Lib/src/i2c.o
-                0x00001fdc                i2c_write
+                0x0000200c       0x5c ./Driver_Lib/src/i2c.o
+                0x0000200c                i2c_write
  .text.SSP0_IRQHandler
-                0x00002038       0x68 ./Driver_Lib/src/ssp.o
-                0x00002038                SSP0_IRQHandler
+                0x00002068       0x68 ./Driver_Lib/src/ssp.o
+                0x00002068                SSP0_IRQHandler
  .text.SSP1_IRQHandler
-                0x000020a0       0x68 ./Driver_Lib/src/ssp.o
-                0x000020a0                SSP1_IRQHandler
+                0x000020d0       0x68 ./Driver_Lib/src/ssp.o
+                0x000020d0                SSP1_IRQHandler
  .text.TIMER16_0_IRQHandler
-                0x00002108       0x80 ./Driver_Lib/src/timer16.o
-                0x00002108                TIMER16_0_IRQHandler
+                0x00002138       0x80 ./Driver_Lib/src/timer16.o
+                0x00002138                TIMER16_0_IRQHandler
  .text.TIMER16_1_IRQHandler
-                0x00002188       0x80 ./Driver_Lib/src/timer16.o
-                0x00002188                TIMER16_1_IRQHandler
+                0x000021b8       0x80 ./Driver_Lib/src/timer16.o
+                0x000021b8                TIMER16_1_IRQHandler
  .text.TIMER32_0_IRQHandler
-                0x00002208       0xb4 ./Driver_Lib/src/timer32.o
-                0x00002208                TIMER32_0_IRQHandler
+                0x00002238       0xb4 ./Driver_Lib/src/timer32.o
+                0x00002238                TIMER32_0_IRQHandler
  .text.TIMER32_1_IRQHandler
-                0x000022bc       0xd0 ./Driver_Lib/src/timer32.o
-                0x000022bc                TIMER32_1_IRQHandler
+                0x000022ec       0xd0 ./Driver_Lib/src/timer32.o
+                0x000022ec                TIMER32_1_IRQHandler
  .text.SystemCoreClockUpdate
-                0x0000238c       0xa0 C:\Users\Hidemichi_Gotou\Documents\LPCXpresso_8.2.2_650\workspace\CMSIS_CORE_LPC11Uxx\Debug\libCMSIS_CORE_LPC11Uxx.a(system_LPC11Uxx.o)
-                0x0000238c                SystemCoreClockUpdate
+                0x000023bc       0xa0 C:\Users\Hidemichi_Gotou\Documents\LPCXpresso_8.2.2_650\workspace\CMSIS_CORE_LPC11Uxx\Debug\libCMSIS_CORE_LPC11Uxx.a(system_LPC11Uxx.o)
+                0x000023bc                SystemCoreClockUpdate
  .text.SystemInit
-                0x0000242c       0xd4 C:\Users\Hidemichi_Gotou\Documents\LPCXpresso_8.2.2_650\workspace\CMSIS_CORE_LPC11Uxx\Debug\libCMSIS_CORE_LPC11Uxx.a(system_LPC11Uxx.o)
-                0x0000242c                SystemInit
- .text.memset   0x00002500        0x8 c:/nxp/lpcxpresso_8.2.2_650/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(memset.o)
-                0x00002500                memset
+                0x0000245c       0xd4 C:\Users\Hidemichi_Gotou\Documents\LPCXpresso_8.2.2_650\workspace\CMSIS_CORE_LPC11Uxx\Debug\libCMSIS_CORE_LPC11Uxx.a(system_LPC11Uxx.o)
+                0x0000245c                SystemInit
+ .text.memset   0x00002530        0x8 c:/nxp/lpcxpresso_8.2.2_650/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(memset.o)
+                0x00002530                memset
  .text.__weak_main
-                0x00002508        0x8 c:/nxp/lpcxpresso_8.2.2_650/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(__weak__main.o)
-                0x00002508                __weak_main
-                0x00002508                __main
- .text.strcpy   0x00002510       0x44 c:/nxp/lpcxpresso_8.2.2_650/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(strcpy.o)
-                0x00002510                strcpy
+                0x00002538        0x8 c:/nxp/lpcxpresso_8.2.2_650/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(__weak__main.o)
+                0x00002538                __weak_main
+                0x00002538                __main
+ .text.strcpy   0x00002540       0x44 c:/nxp/lpcxpresso_8.2.2_650/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(strcpy.o)
+                0x00002540                strcpy
  .text.__aeabi_memset_lowlevel
-                0x00002554       0x2a c:/nxp/lpcxpresso_8.2.2_650/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libcr_eabihelpers.a(memcpy.o)
-                0x00002554                __aeabi_lowlevel_memset
+                0x00002584       0x2a c:/nxp/lpcxpresso_8.2.2_650/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libcr_eabihelpers.a(memcpy.o)
+                0x00002584                __aeabi_lowlevel_memset
  *(.rodata .rodata.* .constdata .constdata.*)
- *fill*         0x0000257e        0x2 ff
- .rodata        0x00002580       0x39 ./src/main.o
- *fill*         0x000025b9        0x3 ff
+ *fill*         0x000025ae        0x2 ff
+ .rodata        0x000025b0       0x39 ./src/main.o
+ *fill*         0x000025e9        0x3 ff
  .rodata.xvprintf
-                0x000025bc       0x5c ./src/xprintf.o
+                0x000025ec       0x5c ./src/xprintf.o
  .rodata.VCOM_DeviceDescriptor
-                0x00002618       0x12 ./Driver_Lib/src/cdc_desc.o
-                0x00002618                VCOM_DeviceDescriptor
- *fill*         0x0000262a        0x2 ff
+                0x00002648       0x12 ./Driver_Lib/src/cdc_desc.o
+                0x00002648                VCOM_DeviceDescriptor
+ *fill*         0x0000265a        0x2 ff
  .rodata.VCOM_ConfigDescriptor
-                0x0000262c       0x44 ./Driver_Lib/src/cdc_desc.o
-                0x0000262c                VCOM_ConfigDescriptor
+                0x0000265c       0x44 ./Driver_Lib/src/cdc_desc.o
+                0x0000265c                VCOM_ConfigDescriptor
  .rodata.VCOM_StringDescriptor
-                0x00002670       0x2a ./Driver_Lib/src/cdc_desc.o
-                0x00002670                VCOM_StringDescriptor
- *fill*         0x0000269a        0x2 ff
+                0x000026a0       0x2a ./Driver_Lib/src/cdc_desc.o
+                0x000026a0                VCOM_StringDescriptor
+ *fill*         0x000026ca        0x2 ff
  .rodata.I2C_IRQHandler
-                0x0000269c      0x144 ./Driver_Lib/src/i2c.o
+                0x000026cc      0x144 ./Driver_Lib/src/i2c.o
  .rodata.CSWTCH.9
-                0x000027e0       0x3c C:\Users\Hidemichi_Gotou\Documents\LPCXpresso_8.2.2_650\workspace\CMSIS_CORE_LPC11Uxx\Debug\libCMSIS_CORE_LPC11Uxx.a(system_LPC11Uxx.o)
-                0x0000281c                . = ALIGN (0x4)
+                0x00002810       0x3c C:\Users\Hidemichi_Gotou\Documents\LPCXpresso_8.2.2_650\workspace\CMSIS_CORE_LPC11Uxx\Debug\libCMSIS_CORE_LPC11Uxx.a(system_LPC11Uxx.o)
+                0x0000284c                . = ALIGN (0x4)
 
-.glue_7         0x0000281c        0x0
- .glue_7        0x0000281c        0x0 linker stubs
+.glue_7         0x0000284c        0x0
+ .glue_7        0x0000284c        0x0 linker stubs
 
-.glue_7t        0x0000281c        0x0
- .glue_7t       0x0000281c        0x0 linker stubs
+.glue_7t        0x0000284c        0x0
+ .glue_7t       0x0000284c        0x0 linker stubs
 
-.vfp11_veneer   0x0000281c        0x0
- .vfp11_veneer  0x0000281c        0x0 linker stubs
+.vfp11_veneer   0x0000284c        0x0
+ .vfp11_veneer  0x0000284c        0x0 linker stubs
 
-.v4_bx          0x0000281c        0x0
- .v4_bx         0x0000281c        0x0 linker stubs
+.v4_bx          0x0000284c        0x0
+ .v4_bx         0x0000284c        0x0 linker stubs
 
-.iplt           0x0000281c        0x0
- .iplt          0x0000281c        0x0 ./src/aeabi_romdiv_patch.o
+.iplt           0x0000284c        0x0
+ .iplt          0x0000284c        0x0 ./src/aeabi_romdiv_patch.o
 
-.rel.dyn        0x0000281c        0x0
- .rel.iplt      0x0000281c        0x0 ./src/aeabi_romdiv_patch.o
+.rel.dyn        0x0000284c        0x0
+ .rel.iplt      0x0000284c        0x0 ./src/aeabi_romdiv_patch.o
 
 .ARM.extab
  *(.ARM.extab* .gnu.linkonce.armextab.*)
-                0x0000281c                __exidx_start = .
+                0x0000284c                __exidx_start = .
 
 .ARM.exidx
  *(.ARM.exidx* .gnu.linkonce.armexidx.*)
-                0x0000281c                __exidx_end = .
-                0x0000281c                _etext = .
+                0x0000284c                __exidx_end = .
+                0x0000284c                _etext = .
 
-.data_RAM2      0x20004000        0x0 load address 0x0000281c
+.data_RAM2      0x20004000        0x0 load address 0x0000284c
  FILL mask 0xff
                 [!provide]                PROVIDE (__start_data_RAM2, .)
  *(.ramfunc.$RAM2)
@@ -954,7 +956,7 @@ END GROUP
                 0x20004000                . = ALIGN (0x4)
                 [!provide]                PROVIDE (__end_data_RAM2, .)
 
-.data_RAM3      0x20000000        0x0 load address 0x0000281c
+.data_RAM3      0x20000000        0x0 load address 0x0000284c
  FILL mask 0xff
                 [!provide]                PROVIDE (__start_data_RAM3, .)
  *(.ramfunc.$RAM3)
@@ -970,7 +972,7 @@ END GROUP
                 0x10000000                . = ALIGN (0x4)
                 0x10000000                _end_uninit_RESERVED = .
 
-.data           0x10000000        0x8 load address 0x0000281c
+.data           0x10000000        0x8 load address 0x0000284c
  FILL mask 0xff
                 0x10000000                _data = .
  *(vtable)
@@ -985,7 +987,7 @@ END GROUP
                 0x10000008                . = ALIGN (0x4)
                 0x10000008                _edata = .
 
-.igot.plt       0x10000008        0x0 load address 0x00002824
+.igot.plt       0x10000008        0x0 load address 0x00002854
  .igot.plt      0x10000008        0x0 ./src/aeabi_romdiv_patch.o
 
 .bss_RAM2       0x20004000        0x0
@@ -1282,56 +1284,56 @@ OUTPUT(LPC11U37_Controller.axf elf32-littlearm)
  .comment       0x000000dc       0x6f c:/nxp/lpcxpresso_8.2.2_650/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(__weak__main.o)
  .comment       0x000000dc       0x6f c:/nxp/lpcxpresso_8.2.2_650/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(strcpy.o)
 
-.debug_line     0x00000000     0x3047
+.debug_line     0x00000000     0x3059
  .debug_line    0x00000000       0x65 ./src/aeabi_romdiv_patch.o
  .debug_line    0x00000065       0xc2 ./src/cr_startup_lpc11uxx.o
  .debug_line    0x00000127       0x78 ./src/crp.o
  .debug_line    0x0000019f      0x37c ./src/i2clcd.o
- .debug_line    0x0000051b      0x515 ./src/main.o
- .debug_line    0x00000a30      0x293 ./src/systick.o
- .debug_line    0x00000cc3      0x5be ./src/usb_rom_func.o
- .debug_line    0x00001281      0x41c ./src/xprintf.o
- .debug_line    0x0000169d      0x277 ./Driver_Lib/src/cdc_desc.o
- .debug_line    0x00001914      0x555 ./Driver_Lib/src/gpio.o
- .debug_line    0x00001e69      0x3bb ./Driver_Lib/src/i2c.o
- .debug_line    0x00002224      0x377 ./Driver_Lib/src/ssp.o
- .debug_line    0x0000259b      0x41d ./Driver_Lib/src/timer16.o
- .debug_line    0x000029b8      0x454 ./Driver_Lib/src/timer32.o
- .debug_line    0x00002e0c      0x23b C:\Users\Hidemichi_Gotou\Documents\LPCXpresso_8.2.2_650\workspace\CMSIS_CORE_LPC11Uxx\Debug\libCMSIS_CORE_LPC11Uxx.a(system_LPC11Uxx.o)
+ .debug_line    0x0000051b      0x51a ./src/main.o
+ .debug_line    0x00000a35      0x293 ./src/systick.o
+ .debug_line    0x00000cc8      0x5cb ./src/usb_rom_func.o
+ .debug_line    0x00001293      0x41c ./src/xprintf.o
+ .debug_line    0x000016af      0x277 ./Driver_Lib/src/cdc_desc.o
+ .debug_line    0x00001926      0x555 ./Driver_Lib/src/gpio.o
+ .debug_line    0x00001e7b      0x3bb ./Driver_Lib/src/i2c.o
+ .debug_line    0x00002236      0x377 ./Driver_Lib/src/ssp.o
+ .debug_line    0x000025ad      0x41d ./Driver_Lib/src/timer16.o
+ .debug_line    0x000029ca      0x454 ./Driver_Lib/src/timer32.o
+ .debug_line    0x00002e1e      0x23b C:\Users\Hidemichi_Gotou\Documents\LPCXpresso_8.2.2_650\workspace\CMSIS_CORE_LPC11Uxx\Debug\libCMSIS_CORE_LPC11Uxx.a(system_LPC11Uxx.o)
 
-.debug_info     0x00000000     0x8c9b
+.debug_info     0x00000000     0x8cb9
  .debug_info    0x00000000       0x9c ./src/aeabi_romdiv_patch.o
  .debug_info    0x0000009c      0x251 ./src/cr_startup_lpc11uxx.o
  .debug_info    0x000002ed       0x3f ./src/crp.o
  .debug_info    0x0000032c      0x4b6 ./src/i2clcd.o
- .debug_info    0x000007e2      0xb89 ./src/main.o
- .debug_info    0x0000136b      0x1a9 ./src/systick.o
- .debug_info    0x00001514     0x26de ./src/usb_rom_func.o
- .debug_info    0x00003bf2      0x4c2 ./src/xprintf.o
- .debug_info    0x000040b4       0xf1 ./Driver_Lib/src/cdc_desc.o
- .debug_info    0x000041a5     0x1012 ./Driver_Lib/src/gpio.o
- .debug_info    0x000051b7      0xd64 ./Driver_Lib/src/i2c.o
- .debug_info    0x00005f1b      0xc38 ./Driver_Lib/src/ssp.o
- .debug_info    0x00006b53      0xe03 ./Driver_Lib/src/timer16.o
- .debug_info    0x00007956      0xdf4 ./Driver_Lib/src/timer32.o
- .debug_info    0x0000874a      0x551 C:\Users\Hidemichi_Gotou\Documents\LPCXpresso_8.2.2_650\workspace\CMSIS_CORE_LPC11Uxx\Debug\libCMSIS_CORE_LPC11Uxx.a(system_LPC11Uxx.o)
+ .debug_info    0x000007e2      0xba7 ./src/main.o
+ .debug_info    0x00001389      0x1a9 ./src/systick.o
+ .debug_info    0x00001532     0x26de ./src/usb_rom_func.o
+ .debug_info    0x00003c10      0x4c2 ./src/xprintf.o
+ .debug_info    0x000040d2       0xf1 ./Driver_Lib/src/cdc_desc.o
+ .debug_info    0x000041c3     0x1012 ./Driver_Lib/src/gpio.o
+ .debug_info    0x000051d5      0xd64 ./Driver_Lib/src/i2c.o
+ .debug_info    0x00005f39      0xc38 ./Driver_Lib/src/ssp.o
+ .debug_info    0x00006b71      0xe03 ./Driver_Lib/src/timer16.o
+ .debug_info    0x00007974      0xdf4 ./Driver_Lib/src/timer32.o
+ .debug_info    0x00008768      0x551 C:\Users\Hidemichi_Gotou\Documents\LPCXpresso_8.2.2_650\workspace\CMSIS_CORE_LPC11Uxx\Debug\libCMSIS_CORE_LPC11Uxx.a(system_LPC11Uxx.o)
 
-.debug_abbrev   0x00000000     0x16c6
+.debug_abbrev   0x00000000     0x16b9
  .debug_abbrev  0x00000000       0x12 ./src/aeabi_romdiv_patch.o
  .debug_abbrev  0x00000012       0xfc ./src/cr_startup_lpc11uxx.o
  .debug_abbrev  0x0000010e       0x36 ./src/crp.o
  .debug_abbrev  0x00000144      0x1b5 ./src/i2clcd.o
- .debug_abbrev  0x000002f9      0x20d ./src/main.o
- .debug_abbrev  0x00000506      0x127 ./src/systick.o
- .debug_abbrev  0x0000062d      0x35a ./src/usb_rom_func.o
- .debug_abbrev  0x00000987      0x197 ./src/xprintf.o
- .debug_abbrev  0x00000b1e       0x60 ./Driver_Lib/src/cdc_desc.o
- .debug_abbrev  0x00000b7e      0x206 ./Driver_Lib/src/gpio.o
- .debug_abbrev  0x00000d84      0x243 ./Driver_Lib/src/i2c.o
- .debug_abbrev  0x00000fc7      0x1c7 ./Driver_Lib/src/ssp.o
- .debug_abbrev  0x0000118e      0x20b ./Driver_Lib/src/timer16.o
- .debug_abbrev  0x00001399      0x21a ./Driver_Lib/src/timer32.o
- .debug_abbrev  0x000015b3      0x113 C:\Users\Hidemichi_Gotou\Documents\LPCXpresso_8.2.2_650\workspace\CMSIS_CORE_LPC11Uxx\Debug\libCMSIS_CORE_LPC11Uxx.a(system_LPC11Uxx.o)
+ .debug_abbrev  0x000002f9      0x200 ./src/main.o
+ .debug_abbrev  0x000004f9      0x127 ./src/systick.o
+ .debug_abbrev  0x00000620      0x35a ./src/usb_rom_func.o
+ .debug_abbrev  0x0000097a      0x197 ./src/xprintf.o
+ .debug_abbrev  0x00000b11       0x60 ./Driver_Lib/src/cdc_desc.o
+ .debug_abbrev  0x00000b71      0x206 ./Driver_Lib/src/gpio.o
+ .debug_abbrev  0x00000d77      0x243 ./Driver_Lib/src/i2c.o
+ .debug_abbrev  0x00000fba      0x1c7 ./Driver_Lib/src/ssp.o
+ .debug_abbrev  0x00001181      0x20b ./Driver_Lib/src/timer16.o
+ .debug_abbrev  0x0000138c      0x21a ./Driver_Lib/src/timer32.o
+ .debug_abbrev  0x000015a6      0x113 C:\Users\Hidemichi_Gotou\Documents\LPCXpresso_8.2.2_650\workspace\CMSIS_CORE_LPC11Uxx\Debug\libCMSIS_CORE_LPC11Uxx.a(system_LPC11Uxx.o)
 
 .debug_aranges  0x00000000      0x538
  .debug_aranges
@@ -1380,7 +1382,7 @@ OUTPUT(LPC11U37_Controller.axf elf32-littlearm)
  .debug_ranges  0x000003c0       0x68 ./Driver_Lib/src/timer32.o
  .debug_ranges  0x00000428       0x18 C:\Users\Hidemichi_Gotou\Documents\LPCXpresso_8.2.2_650\workspace\CMSIS_CORE_LPC11Uxx\Debug\libCMSIS_CORE_LPC11Uxx.a(system_LPC11Uxx.o)
 
-.debug_macro    0x00000000     0x3bfb
+.debug_macro    0x00000000     0x3c04
  .debug_macro   0x00000000       0x23 ./src/cr_startup_lpc11uxx.o
  .debug_macro   0x00000023      0x844 ./src/cr_startup_lpc11uxx.o
  .debug_macro   0x00000867       0x1a ./src/crp.o
@@ -1416,24 +1418,24 @@ OUTPUT(LPC11U37_Controller.axf elf32-littlearm)
  .debug_macro   0x000026f2       0x10 ./src/main.o
  .debug_macro   0x00002702       0xa0 ./src/main.o
  .debug_macro   0x000027a2       0x7f ./src/systick.o
- .debug_macro   0x00002821      0x1f2 ./src/usb_rom_func.o
- .debug_macro   0x00002a13       0x1c ./src/usb_rom_func.o
- .debug_macro   0x00002a2f       0x6a ./src/usb_rom_func.o
- .debug_macro   0x00002a99       0x28 ./src/usb_rom_func.o
- .debug_macro   0x00002ac1       0x32 ./src/xprintf.o
- .debug_macro   0x00002af3       0x16 ./src/xprintf.o
- .debug_macro   0x00002b09       0xfc ./Driver_Lib/src/cdc_desc.o
- .debug_macro   0x00002c05      0x227 ./Driver_Lib/src/cdc_desc.o
- .debug_macro   0x00002e2c       0x7f ./Driver_Lib/src/gpio.o
- .debug_macro   0x00002eab       0x95 ./Driver_Lib/src/i2c.o
- .debug_macro   0x00002f40       0x88 ./Driver_Lib/src/ssp.o
- .debug_macro   0x00002fc8      0x136 ./Driver_Lib/src/ssp.o
- .debug_macro   0x000030fe       0x88 ./Driver_Lib/src/timer16.o
- .debug_macro   0x00003186       0x4c ./Driver_Lib/src/timer16.o
- .debug_macro   0x000031d2       0x88 ./Driver_Lib/src/timer32.o
- .debug_macro   0x0000325a       0x4c ./Driver_Lib/src/timer32.o
- .debug_macro   0x000032a6      0x117 C:\Users\Hidemichi_Gotou\Documents\LPCXpresso_8.2.2_650\workspace\CMSIS_CORE_LPC11Uxx\Debug\libCMSIS_CORE_LPC11Uxx.a(system_LPC11Uxx.o)
- .debug_macro   0x000033bd      0x83e C:\Users\Hidemichi_Gotou\Documents\LPCXpresso_8.2.2_650\workspace\CMSIS_CORE_LPC11Uxx\Debug\libCMSIS_CORE_LPC11Uxx.a(system_LPC11Uxx.o)
+ .debug_macro   0x00002821      0x1fb ./src/usb_rom_func.o
+ .debug_macro   0x00002a1c       0x1c ./src/usb_rom_func.o
+ .debug_macro   0x00002a38       0x6a ./src/usb_rom_func.o
+ .debug_macro   0x00002aa2       0x28 ./src/usb_rom_func.o
+ .debug_macro   0x00002aca       0x32 ./src/xprintf.o
+ .debug_macro   0x00002afc       0x16 ./src/xprintf.o
+ .debug_macro   0x00002b12       0xfc ./Driver_Lib/src/cdc_desc.o
+ .debug_macro   0x00002c0e      0x227 ./Driver_Lib/src/cdc_desc.o
+ .debug_macro   0x00002e35       0x7f ./Driver_Lib/src/gpio.o
+ .debug_macro   0x00002eb4       0x95 ./Driver_Lib/src/i2c.o
+ .debug_macro   0x00002f49       0x88 ./Driver_Lib/src/ssp.o
+ .debug_macro   0x00002fd1      0x136 ./Driver_Lib/src/ssp.o
+ .debug_macro   0x00003107       0x88 ./Driver_Lib/src/timer16.o
+ .debug_macro   0x0000318f       0x4c ./Driver_Lib/src/timer16.o
+ .debug_macro   0x000031db       0x88 ./Driver_Lib/src/timer32.o
+ .debug_macro   0x00003263       0x4c ./Driver_Lib/src/timer32.o
+ .debug_macro   0x000032af      0x117 C:\Users\Hidemichi_Gotou\Documents\LPCXpresso_8.2.2_650\workspace\CMSIS_CORE_LPC11Uxx\Debug\libCMSIS_CORE_LPC11Uxx.a(system_LPC11Uxx.o)
+ .debug_macro   0x000033c6      0x83e C:\Users\Hidemichi_Gotou\Documents\LPCXpresso_8.2.2_650\workspace\CMSIS_CORE_LPC11Uxx\Debug\libCMSIS_CORE_LPC11Uxx.a(system_LPC11Uxx.o)
 
 .debug_str      0x00000000     0xd050
  .debug_str     0x00000000     0x259d ./src/cr_startup_lpc11uxx.o
@@ -1442,12 +1444,12 @@ OUTPUT(LPC11U37_Controller.axf elf32-littlearm)
                                0x24ad (size before relaxing)
  .debug_str     0x00002686     0x322e ./src/i2clcd.o
                                0x5672 (size before relaxing)
- .debug_str     0x000058b4     0x4a05 ./src/main.o
-                               0x9f4b (size before relaxing)
- .debug_str     0x0000a2b9       0x6c ./src/systick.o
+ .debug_str     0x000058b4     0x4a0b ./src/main.o
+                               0x9f51 (size before relaxing)
+ .debug_str     0x0000a2bf       0x6c ./src/systick.o
                                0x5102 (size before relaxing)
- .debug_str     0x0000a325     0x1775 ./src/usb_rom_func.o
-                               0xaf19 (size before relaxing)
+ .debug_str     0x0000a32b     0x176f ./src/usb_rom_func.o
+                               0xb00f (size before relaxing)
  .debug_str     0x0000ba9a      0x107 ./src/xprintf.o
                                0x2658 (size before relaxing)
  .debug_str     0x0000bba1       0x41 ./Driver_Lib/src/cdc_desc.o

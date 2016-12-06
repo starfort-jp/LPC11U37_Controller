@@ -70,7 +70,7 @@ long loop(long xTriggered) {
 	unsigned long xUserSwitch_Status;
 	int xLp;
 	char xText[17];
-	unsigned char yText[17];
+	unsigned char yText[] = "   ";
 	unsigned char *pText;
 //Test I/O port
 	xUserSwitch_Status = GPIOGetPinValue(0x00, 0x01);
@@ -81,7 +81,7 @@ long loop(long xTriggered) {
 			i2c_lcd_clear();
 			i2c_lcd_put_icon(0x0d, 0x00);
 			i2c_lcd_put_icon(0x00, 0x10);
-			i2c_lcd_set_cmd(0x80);	    // move to 2nd line
+			i2c_lcd_set_cmd(0x80);	    // set address to 1st line
 					/*
 					 strcpy(xText, "UserSW > OFF");
 					 for (xLp = 0; xLp <= 16; xLp++)
@@ -91,7 +91,7 @@ long loop(long xTriggered) {
 					 pText = yText;
 					 i2c_lcd_put_string(pText);
 					 */
-			xprintf("%s", "UserSW > OFF");
+			xprintf("%s", "UserSW > OFF ");
 			xTriggered = 0;
 		}
 	} else {
@@ -101,7 +101,7 @@ long loop(long xTriggered) {
 			i2c_lcd_clear();
 			i2c_lcd_put_icon(0x00, 0x00);
 			i2c_lcd_put_icon(0x0d, 0x1e);
-			i2c_lcd_set_cmd(0x80);	    // move to 2nd line
+			i2c_lcd_set_cmd(0x80);	    // set address 1st line
 					/*
 					 strcpy(xText, "UserSW > ON");
 					 for (xLp = 0; xLp <= 16; xLp++)
@@ -115,6 +115,10 @@ long loop(long xTriggered) {
 			xTriggered = 1;
 		}
 	};
+	yText[0] = xData;
+	pText = yText;
+	i2c_lcd_set_cmd(0xc0);	    // set address to 2nd line
+	i2c_lcd_put_string(pText);
 	return xTriggered;
 }
 
@@ -143,7 +147,7 @@ int main(void) {
 	}
 	pText = yText;
 	i2c_lcd_put_string(pText);
-	i2c_lcd_set_cmd(0xC0);	    // move to 2nd line
+	i2c_lcd_set_cmd(0xc0);	    // set address 2nd line
 	strcpy(xText, "OK >");
 	for (xLp = 0; xLp <= 16; xLp++) {
 		yText[xLp] = (unsigned char) xText[xLp];
