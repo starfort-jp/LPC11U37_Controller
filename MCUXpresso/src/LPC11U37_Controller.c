@@ -26,9 +26,16 @@
 #include "usb_rom_func.h"		// ROM function
 
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include <stdint.h>  // for C99
 #include <stdbool.h> // for boolean
+//---
+
+// Global Variables
+extern char xData[3];
+char cText[17];
+size_t cSize;
 //---
 
 // TODO: insert other definitions and declarations here
@@ -65,14 +72,18 @@ void init(void) {
 		// initialize xprintf
 		// xprintf output to I2C_LCD/UART
 		xfunc_out = (void (*)(unsigned char)) i2c_lcd_set_data;  //I2C_LCD
+
+		xData[0] = '>';
 }
 
-long loop(long xTriggered) {
+long loop(long xTriggered)
+{
 	unsigned long xUserSwitch_Status;
-//	int xLp;
-//	char xText[17];
-	unsigned char yText[] = "   ";
+	int xLp, xOn;
+	char tText[2];
+	unsigned char xText[17];
 	unsigned char *pText;
+
 //Test I/O port
 	xUserSwitch_Status = GPIOGetPinValue(0x00, 0x01);
 	if ((xUserSwitch_Status & 0x01) == 0x01) {
@@ -83,16 +94,9 @@ long loop(long xTriggered) {
 			i2c_lcd_put_icon(0x0d, 0x00);
 			i2c_lcd_put_icon(0x00, 0x10);
 			i2c_lcd_set_cmd(0x80);	    // set address to 1st line
-					/*
-					 strcpy(xText, "UserSW > OFF");
-					 for (xLp = 0; xLp <= 16; xLp++)
-					 {
-					 yText[xLp] = (unsigned char)xText[xLp];
-					 }
-					 pText = yText;
-					 i2c_lcd_put_string(pText);
-					 */
 			xprintf("%s", "UserSW > OFF ");
+			i2c_lcd_set_cmd(0xc0);	    // set address to 2nd line
+			xprintf("%s", ">");
 			xTriggered = 0;
 		}
 	} else {
@@ -103,24 +107,91 @@ long loop(long xTriggered) {
 			i2c_lcd_put_icon(0x00, 0x00);
 			i2c_lcd_put_icon(0x0d, 0x1e);
 			i2c_lcd_set_cmd(0x80);	    // set address 1st line
-					/*
-					 strcpy(xText, "UserSW > ON");
-					 for (xLp = 0; xLp <= 16; xLp++)
-					 {
-					 yText[xLp] = (unsigned char)xText[xLp];
-					 }
-					 pText = yText;
-					 i2c_lcd_put_string(pText);
-					 */
 			xprintf("%s", "UserSW > ON");
+			i2c_lcd_set_cmd(0xc0);	    // set address to 2nd line
+			xprintf("%s", ">");
 			xTriggered = 1;
 		}
 	};
-	yText[0] = xData;
-	pText = yText;
-	i2c_lcd_set_cmd(0xc0);	    // set address to 2nd line
-	i2c_lcd_put_string(pText);
-	return xTriggered;
+	//Test UART
+		if (xData[0] != '\0')
+		{
+			if (xData[0] == '\r')
+			{
+				tText[0] = xData[0];
+				tText[1] = xData[1];
+				tText[2] = '\0';
+			}
+			else
+			{
+				tText[0] = xData[0];
+				tText[1] = '\0';
+			}
+			strcat(cText, tText);
+			cSize = strlen(cText);
+			if (cSize < 17)
+			{
+				xOn = 0;
+				for (xLp = 0; xLp <= cSize; xLp++)
+				{
+					if (xOn == 1)
+					{
+						if (cText[xLp] == '\n')		//CR+LF
+						{
+							for (xLp = 0; xLp < 17; xLp++)
+							{
+								cText[xLp] = '\0';
+							}
+							cSize = 0;
+							i2c_lcd_clear();
+							i2c_lcd_set_cmd(0x80);	    // set address 1st line
+							xprintf("%s", "UserSW > ??");
+							i2c_lcd_set_cmd(0xc0);	    // set address to 2nd line
+							xprintf("%s", "CR+LF");
+							xData[0] = '>';
+							break;
+						}
+						else
+						{
+							xOn = 0;
+						}
+					}
+					if (cText[xLp] == '\r')
+					{
+						xOn = 1;
+					}
+				}
+				if (xOn == 0)
+				{
+					for (xLp = 0; xLp < 17; xLp++)
+					{
+						xText[xLp] = cText[xLp];
+					}
+					pText = xText;
+					i2c_lcd_clear();
+					i2c_lcd_set_cmd(0x80);	    // set address 1st line
+					xprintf("%s", "UserSW > OFF");
+					i2c_lcd_set_cmd(0xc0);	    // set address to 2nd line
+					i2c_lcd_put_string(pText);
+					xData[0] = '\0';
+				}
+			}
+			else		//overflow
+			{
+				for (xLp = 0; xLp < 17; xLp++)
+				{
+					cText[xLp] = '\0';
+				}
+				cSize = 0;
+				i2c_lcd_clear();
+				i2c_lcd_set_cmd(0x80);	    // set address 1st line
+				xprintf("%s", "UserSW > ??");
+				i2c_lcd_set_cmd(0xc0);	    // set address to 2nd line
+				xprintf("%s", "String Overflow");
+				xData[0] = '>';
+			}
+		}
+		return xTriggered;
 }
 //---
 
@@ -131,6 +202,16 @@ int main(void) {
 	unsigned char *pText;
 	long xTriggered;
 	long xReturn;
+/*
+	char xInChar[32];
+	char cCMD[8];
+	char cADDR[7];
+	char cDATA[5];
+	long xADDR, xDATA;
+	unsigned char xOutHex[32];
+	long xDt1, xDt2;
+    int xRet;
+*/
 	/*
 		// Force the counter to be placed into memory
 	    volatile static int i = 0 ;
@@ -153,6 +234,18 @@ int main(void) {
 		i2c_lcd_backlight(true);  // Back Light ON
 	//	  i2c_lcd_put_hex8(255);	//Display Hex 00h..FFh
 	//	  i2c_lcd_put_decimal(-2147483647);	//Display Decimal -2147483647..2147483647
+/*
+	    strcpy(xInChar, "put_reg 0x5ac3 0x7d");
+
+	    sscanf(xInChar,"%s%s%s", cCMD, cADDR, cDATA);
+	    xADDR = strtol(cADDR, NULL, 16);
+	    xDATA = strtol(cDATA, NULL, 16);
+
+	    xADDR = 23235;
+	    xDATA = 125;
+	    snprintf(cADDR, 7, "%x", xADDR);
+	    snprintf(cDATA, 5, "%x", xDATA);
+*/
 		strcpy(xText, "Welcome LPC11U37");
 		for (xLp = 0; xLp <= 16; xLp++) {
 			yText[xLp] = (unsigned char) xText[xLp];

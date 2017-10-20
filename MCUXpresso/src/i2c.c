@@ -323,8 +323,7 @@ uint32_t I2CEngine( void )
   return ( true );
 }
 
-
-unsigned char i2c_write(unsigned addr, unsigned char eeaddr, unsigned char dat)
+unsigned char i2c_write(unsigned char addr, unsigned char eeaddr, unsigned char dat)
 {
   I2CWriteLength = 3;
   I2CReadLength = 0;
@@ -334,8 +333,7 @@ unsigned char i2c_write(unsigned addr, unsigned char eeaddr, unsigned char dat)
   return !I2CEngine();
 }
 
-
-unsigned char i2c_write16(unsigned addr, unsigned char eeaddr, unsigned short dat)
+unsigned char i2c_write16(unsigned char addr, unsigned char eeaddr, unsigned short dat)
 {
   I2CWriteLength = 4;
   I2CReadLength = 0;
@@ -366,8 +364,6 @@ unsigned char i2c_read(unsigned char addr, unsigned char eeaddr, unsigned char *
   }
   return 0;
 }
-
-
 
 /******************************************************************************
 **                            End Of File

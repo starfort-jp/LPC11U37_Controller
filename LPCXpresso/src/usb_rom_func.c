@@ -71,7 +71,7 @@ USBD_API_T* pUsbApi;
 #define VCOM_BUF_UARTTXQ  3
 #define VCOM_BUF_ALLOCU  4
 
-char xData = '>';
+char xData[3];
 
 VCOM_DATA_T g_vCOM;
 ErrorCode_t VCOM_bulk_out_hdlr(USBD_HANDLE_T hUsb, void* data, uint32_t event);
@@ -325,7 +325,9 @@ void UART_IRQHandler (void)
     case IIR_RDA:  // Receive Data Available
       uart_read(pVcom);	// 4 chars are available in FIFO
 uint8_t *pbuf = pVcom->rxBuf;
-     xData = *pbuf;
+     xData[0] = *pbuf;
+     xData[1] = *(pbuf + 1);
+     xData[2] = *(pbuf + 2);
      VCOM_USB_Send(pVcom);
       break;
     case  IIR_THRE:	// THRE, transmit holding register empty
